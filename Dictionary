@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 
+/*Problem is at line 37*/
 public class Dictionary
 {
 	protected static int line_number = 0;
@@ -32,6 +33,8 @@ public class Dictionary
 					Dict n = new Dict(find_word);
 					for(line_number = 0; line_number < my_collection.size(); line_number++)
 					{
+						/*This is where my problem is occuring, I can't find a way to compare the user
+						  Inputed word to the collection. Please help!*/
 						if(my_collection.get(line_number).equals(n))
 						{
 							System.out.println("\"" + find_word + "\" is at index " + line_number);
