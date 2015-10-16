@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+
+public class Dictionary
+{
+	protected static int line_number = 0;
+
+	public static void main(String[] args) 
+	{
+		List<Dict> my_collection = new ArrayList<Dict>();
+		List<Dict> search_term = new ArrayList<Dict>(); 
+		File filename = new File("dict.txt");		
+		
+		try
+		{
+			Scanner data_store = new Scanner(filename);
+			Scanner keyboard = new Scanner(System.in);
+				
+				while(data_store.hasNextLine())
+				{
+					String word = data_store.nextLine();
+					Dict m = new Dict(word);
+					my_collection.add(m);
+					line_number++;
+				}
+				
+				System.out.println(my_collection.size() + " words were loaded.");
+				System.out.println("What word are you looking for?");
+				String find_word = keyboard.nextLine();
+				while(!(find_word.equals("no")))
+				{
+					Dict n = new Dict(find_word);
+					for(line_number = 0; line_number < my_collection.size(); line_number++)
+					{
+						if(my_collection.get(line_number).equals(n))
+						{
+							System.out.println("\"" + find_word + "\" is at index " + line_number);
+						}
+					}
+					System.out.println("Search again?");
+					find_word = keyboard.nextLine();
+				}
+		}
+		
+		catch(FileNotFoundException e)
+		{
+			System.out.println("Nope!");
+		}
+	}
+}
